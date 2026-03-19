@@ -50,6 +50,48 @@ kill_process() {
     fi
 }
 
+# --- REQUIREMENT: LOG ARCHIVER ---
+# I'm building this to find bloated logs and zip them up to save space.
+inspection_and_archive_logs() {
+    # The brief says I need to ask which directory to inspect.
+    read -p "Which folder should I scan for big logs? (e.g., ./Logs): " target_dir
+
+    # Safety first: Check if the folder actually exists!
+    if [[ ! -d "$target_dir" ]]; then
+        echo "Error: I can't find the folder '$target_dir'."
+        log_event "DISK ERROR: Directory not found: $target_dir"
+        return
+    fi
+
+    # Create the Archive folder if it's missing (Requirement 2, Point 3).
+    mkdir -p "$ARCHIVE_DIR"
+
+    echo "Scanning for logs bigger than 50MB..."
+    # I'm using a 'while read' loop to process every big file we find.
+    find "$target_dir" -name "*.log" -size +50M | while read -r big_file; do
+        local ts=$(date +%Y%m%d_%H%M%S)
+        local fname=$(basename "$big_file")
+        local zip_name="${fname}_${ts}.tar.gz"
+
+        echo "Zipping up $fname..."
+        # Using 'tar' to compress the file into our ArchiveLogs folder.
+        tar -czf "$ARCHIVE_DIR/$zip_name" -C "$target_dir" "$fname"
+        
+        if [[ $? -eq 0 ]]; then
+            log_event "ARCHIVED: $fname moved to $zip_name"
+            echo "Success: $fname is now archived."
+        fi
+    done
+
+    # --- THE 1GB WARNING (Requirement 2, Point 5) ---
+    # du -sb gives me the size in bytes. 1073741824 bytes = 1GB.
+    local archive_size=$(du -sb "$ARCHIVE_DIR" | cut -f1)
+    if [[ "$archive_size" -gt 1073741824 ]]; then
+        echo "!!! WARNING: The ArchiveLogs folder is over 1GB! !!!"
+        log_event "STORAGE ALERT: ArchiveLogs exceeds 1GB threshold."
+    fi
+}
+
 # --- THE MAIN BRAIN (MENU) ---
 # Keeping this in a loop so the program stays open until I say 'Bye'.
 while true; do
@@ -58,14 +100,16 @@ while true; do
     echo "------------------------------------------"
     echo "1) Show Top Processes"
     echo "2) Terminate a Process"
-    echo "3) Bye"
-    
+    echo "3) Inspection of Disk and Archive Large Logs"
+    echo "4) Bye"
+
     read -p "What do you want to do? [1-3]: " choice
     
     case $choice in
         1) list_top_processes ;;
         2) kill_process ;;
-        3)
+        3) inspection_and_archive_logs ;;
+        4)
             # The brief says I need a Y/N confirmation for 'Bye'.
             read -p "Are you really sure you want to quit? (y/n): " confirm
             if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
@@ -80,4 +124,5 @@ while true; do
             ;;
     esac
 done
+
 
