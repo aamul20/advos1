@@ -2,8 +2,8 @@
 
 # SETUP AREA ---
 # The brief says I need a log file and a place for archives.
-LOG_FILE="system_monitor_log.txt"
-ARCHIVE_DIR="ArchiveLogs"
+LOG_FILE="Task1/system_monitor_log.txt"
+ARCHIVE_DIR="Task1/ArchiveLogs"
 
 # REQUIREMENT: Logging System ---
 # I'll call this whenever the user does something important. 
@@ -23,7 +23,7 @@ list_top_processes() {
     
     echo "--- Top 10 Memory-Heavy Processes ---"
     # Adheres to Requirement 1: List top ten with PID, user, CPU%, and memory% [cite: 36, 37]
-    ps -eo pid,user,pcpu,pmem --sort=-pmem | head -n 11
+    ps aux | head -n 11
     
     # Clear description for the logging requirement 
     log_event "ACTION: Viewed system resource usage and top 10 memory processes."
@@ -107,7 +107,7 @@ while true; do
     echo "3) Inspection of Disk and Archive Large Logs"
     echo "4) Bye"
 
-    read -p "What do you want to do? [1-3]: " choice
+    read -p "What do you want to do? [1-4]: " choice
     
     case $choice in
         1) list_top_processes ;;
