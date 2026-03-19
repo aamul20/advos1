@@ -1,0 +1,4 @@
+1005,Networking,12,9
+1004,Data_Analysis,3,2
+1002,AI_Modeling,5,5
+1001,ML_Processing,6,3
