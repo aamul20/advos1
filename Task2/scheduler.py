@@ -19,7 +19,7 @@ def log_scheduler_event(student_id, job_name, event_type):
         f.write(f"[{now}] ID:{student_id} | Job:{job_name} | Event:{event_type} | Mode:RR\n")
 
 def load_jobs():
-    """Helper to pull jobs from the text file into Python memory."""
+    #Helper to pull jobs from the text file into Python memory
     jobs = []
     if not os.path.exists(QUEUE_FILE):
         return jobs
@@ -53,10 +53,10 @@ def save_completed_job(job):
         finished_file.write(f"{job['student_id']},{job['name']},Completed,{job['priority']}\n")
 
 def submit_job():
-    """Requirement 1 & 2: Letting users add their own jobs."""
+    #Requirement 1 & 2: Letting users add their own jobs
     print("\n--- JOB SUBMISSION PORTAL ---")
     stdid = input("Student ID: ")
-    name = input("Job Name (e.g. PhysicsSim): ")
+    name = input("Job Name (e.g. Computing Job): ")
     try:
         duration = int(input("How many seconds will this take? "))
         priority = int(input("Priority (1=Low, 10=High): "))
@@ -73,13 +73,8 @@ def submit_job():
         print("That's not a number! Please enter integers for time and priority.")
 
 def view_jobs(filename, title):
-    """Displays the contents of our data files in a readable table.
-
-    This function is defensive: it skips blank lines, uses the csv
-    module for safer splitting, strips whitespace from fields, and
-    pads rows with missing columns so printing never raises an
-    IndexError.
-    """
+    #Displays the contents of our data files in a readable table.
+    
     print(f"\n--- {title} ---")
     if not os.path.exists(filename) or os.stat(filename).st_size == 0:
         print("No records found.")
@@ -102,7 +97,7 @@ def view_jobs(filename, title):
             print(f"{row[0]:<10} {row[1]:<20} {row[2]:<15} {row[3]:<4}")
 
 def run_round_robin():
-    """Requirement 2: The actual 'Round Robin' logic."""
+    #Requirement 2: The actual 'Round Robin' logic
     jobs = load_jobs()
     if not jobs:
         print("The queue is empty. Nothing to schedule right now.")
@@ -137,11 +132,11 @@ def run_round_robin():
         save_queue(jobs) # Keeping the text file synced
 
 def main_menu():
-    """The main interface for managing the HPC system."""
+    #The main interface for managing the HPC system.
     while True:
-        print("\n========================================")
-        print("     HPC JOB SCHEDULER SYSTEM")
-        print("========================================")
+        print("\n******************************************")
+        print("     Computing JOB SCHEDULER SYSTEM")
+        print("******************************************")
         print("1. View Pending Jobs")
         print("2. Submit a Job Request")
         print("3. Run Round Robin Scheduler")

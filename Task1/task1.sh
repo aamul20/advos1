@@ -23,7 +23,7 @@ list_top_processes() {
     
     echo "--- Top 10 Memory-Heavy Processes ---"
     # Adheres to Requirement 1: List top ten with PID, user, CPU%, and memory% [cite: 36, 37]
-    ps aux | head -n 11
+    ps -eo pid,user,pcpu,pmem --sort=-pmem | head -n 11
     
     # Clear description for the logging requirement 
     log_event "ACTION: Viewed system resource usage and top 10 memory processes."
@@ -67,17 +67,17 @@ inspection_and_archive_logs() {
         return
     fi
 
-    # Create the Archive folder if it's missing (Requirement 2, Point 3).
+    # Create the Archive folder if it's missing to avoid errors later.
     mkdir -p "$ARCHIVE_DIR"
 
-    echo "Scanning for logs bigger than 50MB..."
+    echo "Right now Scanning for logs bigger than 50MB..."
     # I'm using a 'while read' loop to process every big file we find.
     find "$target_dir" -name "*.log" -size +50M | while read -r big_file; do
         local ts=$(date +%Y%m%d_%H%M%S)
         local fname=$(basename "$big_file")
         local zip_name="${fname}_${ts}.tar.gz"
 
-        echo "Zipping up $fname..."
+        echo "Zipping up the log file $fname..."
         # Using 'tar' to compress the file into our ArchiveLogs folder.
         tar -czf "$ARCHIVE_DIR/$zip_name" -C "$target_dir" "$fname"
         
@@ -87,8 +87,8 @@ inspection_and_archive_logs() {
         fi
     done
 
-    # --- THE 1GB WARNING (Requirement 2, Point 5) ---
-    # du -sb gives me the size in bytes. 1073741824 bytes = 1GB.
+    # THE 1GB WARNING 
+  
     local archive_size=$(du -sb "$ARCHIVE_DIR" | cut -f1)
     if [[ "$archive_size" -gt 1073741824 ]]; then
         echo "!!! WARNING: The ArchiveLogs folder is over 1GB! !!!"
@@ -97,11 +97,11 @@ inspection_and_archive_logs() {
 }
 
 # THE MAIN BRAIN (MENU) ---
-# Keeping this in a loop so the program stays open until I say 'Bye'.
+# Keeping this in a loop so the program stays open until said 'Bye'.
 while true; do
     echo "------------------------------------------"
     echo "  UNIVERSITY DATA CENTRE ADMIN TOOL"
-    echo "------------------------------------------"
+    echo "******************************************"
     echo "1) Show Top Processes"
     echo "2) Terminate a Process"
     echo "3) Inspection of Disk and Archive Large Logs"

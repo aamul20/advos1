@@ -1,0 +1,24 @@
+[2026-03-21 19:00:42] Student: 1004 | File: LOGIN | Status: SUCCESS
+[2026-03-21 19:01:12] Student: 1005 | File: Task3/esay.pdf | Status: FAILED_NOT_FOUND
+[2026-03-21 20:17:02] ID: 1000 | Resource: huge_test.log | Note: REJECTED_VALIDATION
+[2026-03-21 20:20:29] ID: 100 | Resource: Task3huge_test.txt | Note: REJECTED_VALIDATION
+[2026-03-21 20:21:33] ID: 1000 | Resource: calendar 24-25.pdf | Note: SUBMISSION_SUCCESS
+[2026-03-21 20:22:53] ID: 1000 | Resource: calendar_copied.pdf | Note: DUPLICATE_REJECTED
+[2026-03-21 20:27:26] ID: 10101 | Resource: calendar_copied.pdf | Note: DUPLICATE_REJECTED
+[2026-03-21 20:31:29] ID: 222 | Resource: calendar_copied.pdf | Note: DUPLICATE_REJECTED
+[2026-03-21 20:32:37] ID: 1001 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:33:36] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:33:38] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:33:50] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:33:54] ID: 1 | Resource: LOGIN | Note: LOCKED_OUT
+[2026-03-21 20:34:01] ID: 1 | Resource: LOGIN | Note: LOCKED_OUT
+[2026-03-21 20:34:09] ID: 1 | Resource: LOGIN | Note: LOCKED_OUT
+[2026-03-21 20:34:57] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:35:03] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:35:12] ID: 2 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:35:17] ID: 2 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:35:20] ID: 2 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:35:24] ID: 2 | Resource: LOGIN | Note: LOCKED_OUT
+[2026-03-21 20:39:01] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-21 20:39:04] ID: 1 | Resource: LOGIN | Note: SUSPICIOUS_PATTERN
+[2026-03-21 20:39:04] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
