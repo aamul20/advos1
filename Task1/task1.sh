@@ -16,13 +16,13 @@ log_event() {
 
 # --- REQUIREMENT: PROCESS WATCHER ---
 list_top_processes() {
-    # Added 'top' to satisfy Requirement 1: Display current CPU and memory usage [cite: 35]
+    # Added 'top' to satisfy Requirement 1: Display current CPU and memory usage 
     echo "--- System Resource Overview ---"
     top -bn1 | head -n 5 
     echo ""
     
     echo "--- Top 10 Memory-Heavy Processes ---"
-    # Adheres to Requirement 1: List top ten with PID, user, CPU%, and memory% [cite: 36, 37]
+    # Adheres to Requirement 1: List top ten with PID, user, CPU%, and memory% 
     ps -eo pid,user,pcpu,pmem --sort=-pmem | head -n 11
     
     # Clear description for the logging requirement 

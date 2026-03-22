@@ -111,8 +111,6 @@ def run_round_robin():
         current = jobs.pop(0)
         print(f"\n[RUNNING] Student {current['student_id']}'s job: {current['name']}")
         
-        # We simulate the work. I'm using 2s for a faster demo, 
-        # but the logic still subtracts 5s of 'virtual' time.
         time.sleep(2) 
 
         if current['time_left'] > quantum:
