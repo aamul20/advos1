@@ -22,3 +22,8 @@
 [2026-03-21 20:39:01] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
 [2026-03-21 20:39:04] ID: 1 | Resource: LOGIN | Note: SUSPICIOUS_PATTERN
 [2026-03-21 20:39:04] ID: 1 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[2026-03-22 12:18:22] ID: 100 | Resource: LOGIN | Note: FAILED_ATTEMPT
+[Sun, Mar 22, 2026 12:26:56 PM] Login Fail: 1
+[Sun, Mar 22, 2026 12:27:32 PM] Login Fail: 1
+[Sun, Mar 22, 2026 12:28:11 PM] Login Fail: 1
+[Sun, Mar 22, 2026 12:32:44 PM] Login Fail: 1

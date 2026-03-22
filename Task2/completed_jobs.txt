@@ -1,1 +1,6 @@
 
+1004,Data_Analysis,Completed,2
+1002,AI_Modeling,Completed,5
+1001,ML_Processing,Completed,3
+1011,Distributed_System,Completed,6
+1005,Networking,Completed,9

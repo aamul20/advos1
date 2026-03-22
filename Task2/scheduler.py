@@ -80,7 +80,7 @@ def view_jobs(filename, title):
         print("No records found.")
         return
 
-    # Use consistent column widths (Pri given a small width for alignment)
+   
     print(f"{'ID':<10} {'Job Name':<20} {'Time/Status':<15} {'Pri':<4}")
     import csv
     with open(filename, "r", newline="") as f:

@@ -3,21 +3,21 @@ import hashlib
 import time
 from datetime import datetime
 
-# --- Administrative Settings ---
+# Administrative Settings
 SECURITY_LOG = "Task3/submission_log.txt"
 COLLECTION_DATA = "Task3/submissions_data.txt" 
 MAX_BYTES = 5 * 1024 * 1024  # 5MB limit 
 
-# --- Live Security Tracking ---
-# Dictionaries are the most efficient way to track 'live' session state 
+#  Live Security Tracking 
+# Concept of Dictionaries are used here
 lockout_strikes = {}     
 access_timestamps = {}   
 
-def record_activity(std_id, resource, info):
-    #Requirement: Logging System.
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(SECURITY_LOG, "a") as f:
-        f.write(f"[{timestamp}] ID: {std_id} | Resource: {resource} | Note: {info}\n")
+def setup_files():
+    #We have to ensure our tracking files exist before we start.
+    os.makedirs("Task3", exist_ok=True)
+    if not os.path.exists(SECURITY_LOG): open(SECURITY_LOG, 'w').close()
+    if not os.path.exists(COLLECTION_DATA): open(COLLECTION_DATA, 'w').close()
 
 def get_file_hash(path):
     #Generates a fingerprint to detect identical content. 
@@ -27,8 +27,15 @@ def get_file_hash(path):
             sha.update(chunk)
     return sha.hexdigest()
 
+def record_activity(std_id, resource, info):
+    #This is the Logging System, uses datetime for timestamps.
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(SECURITY_LOG, "a") as f:
+        f.write(f"[{timestamp}] ID: {std_id} | Resource: {resource} | Note: {info}\n")
+
+
 def upload_assignment():
-    #Requirement: File Validation & Duplicate Detection.
+    #File Validation & Duplicate Detection.
     print("\n--- Assignment Upload Portal ---")
     sid = input("Student ID: ")
     filepath = input("File Path: ")
@@ -58,13 +65,13 @@ def upload_assignment():
     with open(COLLECTION_DATA, "a") as f:
         f.write(f"{sid},{fname},{file_hash}\n")
     
-    print(f"Success! '{fname}' is now in the vault.")
+    print(f"SUCCESSful!!! '{fname}' is now in the vault.")
     record_activity(sid, fname, "SUBMISSION_SUCCESS")
 
 def check_history(single_search=True):
     #Requirement: Check if submitted OR List all assignments.
     if not os.path.exists(COLLECTION_DATA) or os.stat(COLLECTION_DATA).st_size == 0:
-        print("The vault is currently empty.")
+        print("The vault is currently empty. Theres nothing")
         return
 
     if single_search:
@@ -76,7 +83,7 @@ def check_history(single_search=True):
                     print(f"Match: {target} was submitted.")
                     found = True
                     break
-        if not found: print("No record found.")
+        if not found: print("Sorry, Sorry, No record found.")
     else:
         print(f"\n{'ID':<15} {'Filename'}")
         with open(COLLECTION_DATA, "r") as f:
@@ -86,7 +93,7 @@ def check_history(single_search=True):
 
 def login_simulation():
     #Requirement: Access Control & Suspicious Activity.
-    print("\n--- Access Control Login ---")
+    print("\n--- $$ Access Control Login $$ ---")
     sid = input("Student ID: ")
     
     if lockout_strikes.get(sid, 0) >= 3:
@@ -117,9 +124,9 @@ def login_simulation():
 def menu():
     #Requirement: Menu System and Exit Confirmation.
     while True:
-        print("\n" + "="*40)
+        print("\n" + "$"*40)
         print("   SECURE SUBMISSION ADMIN TOOL")
-        print("="*40)
+        print("$"*40)
         print("1. Submit Assignment")
         print("2. Check for Specific Submission")
         print("3. List All Submissions")
