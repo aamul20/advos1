@@ -27,3 +27,8 @@
 [Sun, Mar 22, 2026 12:27:32 PM] Login Fail: 1
 [Sun, Mar 22, 2026 12:28:11 PM] Login Fail: 1
 [Sun, Mar 22, 2026 12:32:44 PM] Login Fail: 1
+[2026-03-22 12:44:19] ID: 100 | Resource: huge_test.log | Note: REJECTED_VALIDATION
+[2026-03-22 12:44:56] ID: 100 | Resource: huge_test.log | Note: REJECTED_VALIDATION
+[2026-03-22 12:46:54] ID: 200 | Resource: test.pdf | Note: SUBMISSION_SUCCESS
+[2026-03-22 12:48:42] ID: 300 | Resource: duplicate.pdf | Note: DUPLICATE_REJECTED
+[2026-03-22 13:53:37] ID: 300 | Resource: duplicate.pdf | Note: DUPLICATE_REJECTED

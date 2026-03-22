@@ -124,9 +124,9 @@ def login_simulation():
 def menu():
     #Requirement: Menu System and Exit Confirmation.
     while True:
-        print("\n" + "$"*40)
+        print("\n" + "="*40)
         print("   SECURE SUBMISSION ADMIN TOOL")
-        print("$"*40)
+        print("="*40)
         print("1. Submit Assignment")
         print("2. Check for Specific Submission")
         print("3. List All Submissions")

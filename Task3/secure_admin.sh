@@ -1,7 +1,6 @@
 #!/bin/bash
 # Bash Submission Tool
 
-
 DATA="Task3/submissions_data.txt"
 LOG="Task3/submission_log.txt"
 mkdir -p Task3 && touch "$DATA" "$LOG"
@@ -13,12 +12,20 @@ LAST_ATTEMPT=0
 #while loop for the menu system, will keep running until user chooses to exit 
 #by using Option 5 and confirming with 'y'.
 while true; do
-    echo -e "\n--- BASH SECURE SYSTEM ---\n1. Submit something \n2. Check File here\n3. List All and everything\n4. Try Logining\n5. Bye"
+    echo "==============================="
+    echo -e " SECURE SUBMISSION ADMIN TOOL "
+    echo "==============================="
+    echo "1. Submit assignment"
+    echo "2. Check for specific Submission"
+    echo "3. List All Submissions"
+    echo "4. Login Simulation"
+    echo "5. Bye (Exit)"
     read -p "Option: " choice
 
     case $choice in
     
         1) 
+        echo "--- Assignment Upload Portal ---"
          # File Validation & Duplicates
             read -p "Student ID: " sid
             read -p "File Path: " path
