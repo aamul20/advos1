@@ -125,7 +125,7 @@ def run_round_robin():
         else:
             # This IS actually finished.
             print(f"  Job Finished!")
-            current['time_left'] = 0 # Ensure it shows 0
+            current['time_left'] = 0 
             save_completed_job(current)
             log_scheduler_event(current['student_id'], current['name'], "EXECUTION_COMPLETE")
         

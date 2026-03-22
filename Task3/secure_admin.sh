@@ -42,7 +42,7 @@ while true; do
                 else
                     echo "$sid,$FNAME,$F_HASH" >> "$DATA"
                     echo "[$sid] Submitted $FNAME" >> "$LOG"
-                    echo "Success."
+                    echo "Success. $FNAME is now in the vault."
                 fi
             else
                 echo "Rejected: Invalid format or > 5MB" #message of rejection
